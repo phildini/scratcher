@@ -15,7 +15,6 @@ more = True
 while more:
     resp = requests.get(f"https://itch.io/my-purchases?page={page}&format=json", headers={'Cookie': os.environ["ITCH_COOKIE"]})
     if resp.json()['num_items'] != 50:
-        more = False
     soup = BeautifulSoup(resp.json()['content'], 'html.parser')
     titles = soup.find_all("div", "game_title")
     games = soup.find_all("div", "game_cell")
